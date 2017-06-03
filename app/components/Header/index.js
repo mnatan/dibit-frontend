@@ -47,6 +47,9 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
               <ReduxNavItem to="/features" activeRoute={this.props.activeRoute}>
                 <FormattedMessage {...messages.features} />
               </ReduxNavItem>
+              <ReduxNavItem to="/select" activeRoute={this.props.activeRoute}>
+                <FormattedMessage {...messages.select} />
+              </ReduxNavItem>
               <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
                 <MenuItem eventKey={3.1}>Action</MenuItem>
                 <MenuItem eventKey={3.2}>Another action</MenuItem>
@@ -62,14 +65,6 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
             </Nav>
           </Navbar.Collapse>
         </Navbar>
-        {/*<NavBar>*/}
-        {/*<HeaderLink to="/">*/}
-        {/*<FormattedMessage {...messages.home} />*/}
-        {/*</HeaderLink>*/}
-        {/*<HeaderLink to="/features">*/}
-        {/*<FormattedMessage {...messages.features} />*/}
-        {/*</HeaderLink>*/}
-        {/*</NavBar>*/}
       </div>
     );
   }

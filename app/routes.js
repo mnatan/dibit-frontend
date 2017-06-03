@@ -47,6 +47,15 @@ export default function createRoutes(store) {
           .catch(errorLoading);
       },
     }, {
+    }, {
+      path: '/select',
+      name: 'select',
+      getComponent(nextState, cb) {
+        import('containers/SelectPage')
+          .then(loadModule(cb))
+          .catch(errorLoading);
+      },
+    }, {
       path: 'login',
       name: 'login',
       getComponent(location, cb) {
