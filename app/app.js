@@ -11,18 +11,18 @@ import 'babel-polyfill';
 // Import all the third party stuff
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
-import { applyRouterMiddleware, Router, browserHistory } from 'react-router';
-import { syncHistoryWithStore } from 'react-router-redux';
+import {Provider} from 'react-redux';
+import {applyRouterMiddleware, Router, browserHistory} from 'react-router';
+import {syncHistoryWithStore} from 'react-router-redux';
 import FontFaceObserver from 'fontfaceobserver';
-import { useScroll } from 'react-router-scroll';
+import {useScroll} from 'react-router-scroll';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
 import App from 'containers/App';
 
 // Import selector for `syncHistoryWithStore`
-import { makeSelectLocationState } from 'containers/App/selectors';
+import {makeSelectLocationState} from 'containers/App/selectors';
 
 // Import Language Provider
 import LanguageProvider from 'containers/LanguageProvider';
@@ -37,7 +37,7 @@ import 'file-loader?name=[name].[ext]!./.htaccess'; // eslint-disable-line impor
 import configureStore from './store';
 
 // Import i18n messages
-import { translationMessages } from './i18n';
+import {translationMessages} from './i18n';
 
 // Import CSS reset and Global Styles
 import './global-styles';
@@ -60,7 +60,7 @@ openSansObserver.load().then(() => {
 // this uses the singleton browserHistory provided by react-router
 // Optionally, this could be changed to leverage a created history
 // e.g. `const browserHistory = useRouterHistory(createBrowserHistory)();`
-const initialState = {};
+const initialState = {route: {locationBeforeTransitions: browserHistory.getCurrentLocation()}};
 const store = configureStore(initialState, browserHistory);
 
 // Sync history and store, as the react-router-redux reducer

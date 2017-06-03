@@ -19,7 +19,9 @@ class ReduxNavItem extends React.Component { // eslint-disable-line react/prefer
 
     return (
       <li className={className}>
-        <Link to={this.props.to}>{this.props.text}</Link>
+        <Link to={this.props.to}>
+          {Children.toArray(this.props.children)}
+        </Link>
       </li>
     )
   }
@@ -39,16 +41,12 @@ class Header extends React.Component { // eslint-disable-line react/prefer-state
           </Navbar.Header>
           <Navbar.Collapse>
             <Nav>
-              {/*<LinkContainer to="/">*/}
-              {/*<NavItem eventKey={1}>*/}
-              <ReduxNavItem text="Home" to="/" activeRoute={this.props.activeRoute}/>
-              <ReduxNavItem text="Features" to="/features" activeRoute={this.props.activeRoute}/>
-              {/*<Link to="/features">Features</Link>*/}
-              {/*</NavItem>*/}
-              {/*</LinkContainer>*/}
-              {/*<LinkContainer to="/">*/}
-              {/*<NavItem eventKey={2}>Features</NavItem>*/}
-              {/*</LinkContainer>*/}
+              <ReduxNavItem to="/" activeRoute={this.props.activeRoute}>
+                <FormattedMessage {...messages.home} />
+              </ReduxNavItem>
+              <ReduxNavItem to="/features" activeRoute={this.props.activeRoute}>
+                <FormattedMessage {...messages.features} />
+              </ReduxNavItem>
               <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
                 <MenuItem eventKey={3.1}>Action</MenuItem>
                 <MenuItem eventKey={3.2}>Another action</MenuItem>
@@ -82,6 +80,7 @@ Header.propTypes = {
 };
 
 const selectRoute = store => store.get('route');
+
 const selectBeforeTransitions = createSelector(
   selectRoute,
   (state) => state.get('locationBeforeTransitions')
