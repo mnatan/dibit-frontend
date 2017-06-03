@@ -35,15 +35,6 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     }
   }
 
-  options = [
-    {value: 'one', label: 'One'},
-    {value: 'two', label: 'Two'}
-  ];
-
-  logChange(val) {
-    console.log("Selected: " + val);
-  }
-
   render() {
     const {loading, error, repos} = this.props;
     const reposListProps = {
@@ -85,12 +76,6 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                   placeholder="mxstbr"
                   value={this.props.username}
                   onChange={this.props.onChangeUsername}
-                />
-                <Select
-                  name="form-field-name"
-                  value="one"
-                  options={this.options}
-                  onChange={this.logChange}
                 />
               </label>
             </Form>
