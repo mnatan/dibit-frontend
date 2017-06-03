@@ -6,11 +6,11 @@
 
 import React from 'react';
 import Helmet from 'react-helmet';
-import { FormattedMessage } from 'react-intl';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import {FormattedMessage} from 'react-intl';
+import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
 
-import { makeSelectRepos, makeSelectLoading, makeSelectError } from 'containers/App/selectors';
+import {makeSelectRepos, makeSelectLoading, makeSelectError} from 'containers/App/selectors';
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
 import AtPrefix from './AtPrefix';
@@ -19,9 +19,11 @@ import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
-import { loadRepos } from '../App/actions';
-import { changeUsername } from './actions';
-import { makeSelectUsername } from './selectors';
+import {loadRepos} from '../App/actions';
+import {changeUsername} from './actions';
+import {makeSelectUsername} from './selectors';
+import Select from 'react-select';
+
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
   /**
@@ -33,8 +35,17 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     }
   }
 
+  options = [
+    {value: 'one', label: 'One'},
+    {value: 'two', label: 'Two'}
+  ];
+
+  logChange(val) {
+    console.log("Selected: " + val);
+  }
+
   render() {
-    const { loading, error, repos } = this.props;
+    const {loading, error, repos} = this.props;
     const reposListProps = {
       loading,
       error,
@@ -44,9 +55,9 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
     return (
       <article>
         <Helmet
-          title="Home Page"
+          title="Home"
           meta={[
-            { name: 'description', content: 'A React.js Boilerplate application homepage' },
+            {name: 'description', content: 'A highly scalable reservation system'},
           ]}
         />
         <div>
@@ -74,6 +85,12 @@ export class HomePage extends React.PureComponent { // eslint-disable-line react
                   placeholder="mxstbr"
                   value={this.props.username}
                   onChange={this.props.onChangeUsername}
+                />
+                <Select
+                  name="form-field-name"
+                  value="one"
+                  options={this.options}
+                  onChange={this.logChange}
                 />
               </label>
             </Form>

@@ -13,9 +13,10 @@ import styled from 'styled-components';
 import Header from 'components/Header';
 import Footer from 'components/Footer';
 import withProgressBar from 'components/ProgressBar';
+import 'react-select/dist/react-select.css';
+
 
 const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
   margin: 0 auto;
   display: flex;
   min-height: 100%;
@@ -23,18 +24,30 @@ const AppWrapper = styled.div`
   flex-direction: column;
 `;
 
+const ContentWrapper = styled.div`
+  margin-top: 100px;
+  margin-bottom: 50px;
+`;
+
 export function App(props) {
   return (
     <AppWrapper>
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        titleTemplate="%s - DibitPanel"
+        defaultTitle="DibitPanel"
         meta={[
-          { name: 'description', content: 'A React.js Boilerplate application' },
+          {name: 'description', content: 'A highly scalable reservation system'},
         ]}
       />
-      <Header />
-      {React.Children.toArray(props.children)}
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"/>
+      <link rel="stylesheet" href="https://bootswatch.com/flatly/bootstrap.min.css"/>
+      <link rel="stylesheet" href="https://npmcdn.com/react-selectize@2.1.0/dist/index.min.css"/>
+      <div className="container">
+        <Header />
+        <ContentWrapper>
+          {React.Children.toArray(props.children)}
+        </ContentWrapper>
+      </div>
       <Footer />
     </AppWrapper>
   );
