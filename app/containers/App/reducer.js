@@ -10,12 +10,13 @@
  *   return state.set('yourStateVariable', true);
  */
 
-import { fromJS } from 'immutable';
+import {fromJS} from 'immutable';
 
 import {
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS,
   LOAD_REPOS_ERROR,
+  CHANGE_GITHUB_USERNAME
 } from './constants';
 
 // The initial state of the App
@@ -23,7 +24,8 @@ const initialState = fromJS({
   loading: false,
   error: false,
   currentUser: false,
-  userData: {
+  github: {
+    user_search: "",
     repositories: false,
   },
 });
@@ -34,16 +36,20 @@ function appReducer(state = initialState, action) {
       return state
         .set('loading', true)
         .set('error', false)
-        .setIn(['userData', 'repositories'], false);
+        .setIn(['github', 'repositories'], false);
     case LOAD_REPOS_SUCCESS:
       return state
-        .setIn(['userData', 'repositories'], action.repos)
+        .setIn(['github', 'repositories'], action.repos)
         .set('loading', false)
         .set('currentUser', action.username);
     case LOAD_REPOS_ERROR:
       return state
         .set('error', action.error)
         .set('loading', false);
+    case CHANGE_GITHUB_USERNAME:
+      // Delete prefixed '@' from the github username
+      return state
+        .setIn(['github', 'user_search'], action.name.replace(/@/gi, ''));
     default:
       return state;
   }

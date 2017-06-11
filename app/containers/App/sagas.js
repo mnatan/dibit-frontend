@@ -4,18 +4,18 @@
 
 import { take, call, put, select, cancel, takeLatest } from 'redux-saga/effects';
 import { LOCATION_CHANGE } from 'react-router-redux';
-import { LOAD_REPOS } from 'containers/App/constants';
-import { reposLoaded, repoLoadingError } from 'containers/App/actions';
+import { LOAD_REPOS } from './constants';
+import { reposLoaded, repoLoadingError } from './actions';
 
 import request from 'utils/request';
-import { makeSelectUsername } from 'containers/HomePage/selectors';
+import { makeSelectGithubUsername } from './selectors';
 
 /**
  * Github repos request/response handler
  */
 export function* getRepos() {
   // Select username from store
-  const username = yield select(makeSelectUsername());
+  const username = yield select(makeSelectGithubUsername());
   const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
 
   try {

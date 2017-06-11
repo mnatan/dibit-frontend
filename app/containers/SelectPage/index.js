@@ -32,7 +32,7 @@ export class SelectPage extends React.PureComponent { // eslint-disable-line rea
         <Helmet
           title="Select Example"
           meta={[
-            {name: 'description', content: 'A highly scalable reservation system'},
+            {name: 'description', content: 'React-Select presentation'},
           ]}
         />
         <div>

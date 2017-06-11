@@ -23,7 +23,7 @@ const makeSelectError = () => createSelector(
 
 const makeSelectRepos = () => createSelector(
   selectGlobal,
-  (globalState) => globalState.getIn(['userData', 'repositories'])
+  (globalState) => globalState.getIn(['github', 'repositories'])
 );
 
 const makeSelectLocationState = () => {
@@ -42,6 +42,11 @@ const makeSelectLocationState = () => {
   };
 };
 
+const makeSelectGithubUsername = () => createSelector(
+  selectGlobal,
+  (globalState) => globalState.getIn(['github', 'user_search'])
+);
+
 export {
   selectGlobal,
   makeSelectCurrentUser,
@@ -49,4 +54,5 @@ export {
   makeSelectError,
   makeSelectRepos,
   makeSelectLocationState,
+  makeSelectGithubUsername
 };

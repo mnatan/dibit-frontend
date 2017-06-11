@@ -19,6 +19,7 @@ import {
   LOAD_REPOS,
   LOAD_REPOS_SUCCESS,
   LOAD_REPOS_ERROR,
+  CHANGE_GITHUB_USERNAME
 } from './constants';
 
 /**
@@ -59,5 +60,19 @@ export function repoLoadingError(error) {
   return {
     type: LOAD_REPOS_ERROR,
     error,
+  };
+}
+
+/**
+ * Changes the input field of the form
+ *
+ * @param  {name} name The new text of the input field
+ *
+ * @return {object}    An action object with a type of CHANGE_USERNAME
+ */
+export function changeGithubUsername(name) {
+  return {
+    type: CHANGE_GITHUB_USERNAME,
+    name,
   };
 }

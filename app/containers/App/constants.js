@@ -12,4 +12,5 @@
 export const LOAD_REPOS = 'boilerplate/App/LOAD_REPOS';
 export const LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS';
 export const LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR';
+export const CHANGE_GITHUB_USERNAME = 'boilerplate/App/CHANGE_GITHUB_USERNAME';
 export const DEFAULT_LOCALE = 'en';

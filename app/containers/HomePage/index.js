@@ -10,7 +10,7 @@ import {FormattedMessage} from 'react-intl';
 import {connect} from 'react-redux';
 import {createStructuredSelector} from 'reselect';
 
-import {makeSelectRepos, makeSelectLoading, makeSelectError} from 'containers/App/selectors';
+import {makeSelectRepos, makeSelectLoading, makeSelectError} from '../App/selectors';
 import H2 from 'components/H2';
 import ReposList from 'components/ReposList';
 import AtPrefix from './AtPrefix';
@@ -19,10 +19,9 @@ import Form from './Form';
 import Input from './Input';
 import Section from './Section';
 import messages from './messages';
-import {loadRepos} from '../App/actions';
-import {changeUsername} from './actions';
-import {makeSelectUsername} from './selectors';
-import Select from 'react-select';
+import {loadRepos} from 'containers/App/actions';
+import {changeGithubUsername} from 'containers/App/actions';
+import {makeSelectGithubUsername} from 'containers/App/selectors';
 
 
 export class HomePage extends React.PureComponent { // eslint-disable-line react/prefer-stateless-function
@@ -104,7 +103,7 @@ HomePage.propTypes = {
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChangeUsername: (evt) => dispatch(changeUsername(evt.target.value)),
+    onChangeUsername: (evt) => dispatch(changeGithubUsername(evt.target.value)),
     onSubmitForm: (evt) => {
       if (evt !== undefined && evt.preventDefault) evt.preventDefault();
       dispatch(loadRepos());
@@ -113,8 +112,8 @@ export function mapDispatchToProps(dispatch) {
 }
 
 const mapStateToProps = createStructuredSelector({
+  username: makeSelectGithubUsername(),
   repos: makeSelectRepos(),
-  username: makeSelectUsername(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
 });
